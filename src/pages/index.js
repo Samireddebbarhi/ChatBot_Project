@@ -6,7 +6,7 @@ import axios from "axios";
 export default function Home(){
     const [userInput,setUserInput]=useState("");
     const [messages,setMessages]=useState([]);
-    const [KanTyping,setKanTyping]=useState(false);
+    const [kanTyping,setKanTyping]=useState(false);
 
     const handleChange = async (event) => {
         setUserInput(event.target.value);
@@ -15,7 +15,7 @@ const handleSubmit = async (event) => {
     event.preventDefault();
     const newMessage={user:true,text:userInput};
     setMessages([...messages,newMessage,{user:false,text:"loading"}]);
-    setKanTyping=true;
+    setKanTyping(true);
 
 
 try
@@ -32,7 +32,7 @@ try
      setMessages([...messages,newMessage,botResponse]);
 
 }finally{
-     setKanyeTyping(false);
+     setKanTyping(false);
       setUserInput("");
 
 }
@@ -58,7 +58,6 @@ return (
           <i className="fa fa-video-camera video-icon"></i>
         </div>
         <div className="chat-window">
-          <p className="chat-bot-header">Powered by <a className="ref-link" href="http://metaschool.so/" target="_blank" rel="noopener noreferrer">metaschool 🔮</a></p>
           {messages.map((message, index) => (
             <div key={index} className="message-container">
               {message.user ? (
@@ -93,7 +92,7 @@ return (
             placeholder="Type your message here..."
             value={userInput}
             onChange={handleChange}
-            disabled={kanyeTyping}
+            disabled={kanTyping}
           />
           <button type="submit">
             <i className="fa fa-paper-plane" aria-hidden="true"></i>
